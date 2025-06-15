@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Politipedia</title>
+  <title>Political Glossary</title>
   <style>
     body {
       font-family: Georgia, serif;
@@ -11,105 +11,203 @@
       color: #000000;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
     }
     header {
       background-color: #0A3D62;
-      color: white;
-      padding: 2rem;
+      color: #FFFFFF;
+      padding: 1rem;
       text-align: center;
     }
-    .section {
+    main {
       padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 3rem;
     }
     h2 {
-      border-bottom: 2px solid #7D7D7D;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      color: #0A3D62;
     }
     .term {
       cursor: pointer;
       color: #0A3D62;
       text-decoration: underline;
-      margin: 0.5rem 0;
-      display: block;
+      margin-bottom: 0.5rem;
+      display: inline-block;
     }
     .modal {
       display: none;
       position: fixed;
-      z-index: 10;
+      z-index: 1000;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.6);
     }
     .modal-content {
       background-color: #FFFFFF;
       margin: 5% auto;
       padding: 2rem;
       border: 1px solid #7D7D7D;
-      width: 80%;
+      width: 90%;
       max-width: 800px;
       color: #000000;
-      position: relative;
     }
     .close {
       color: #7D7D7D;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
+      float: right;
+      font-size: 28px;
       font-weight: bold;
       cursor: pointer;
     }
-    blockquote {
-      margin: 1rem 0;
-      font-style: italic;
-      color: #7D7D7D;
-      border-left: 4px solid #0A3D62;
-      padding-left: 1rem;
+    .close:hover,
+    .close:focus {
+      color: #000000;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Glossary of Governmental Structures & Political Ideologies</h1>
+    <h1>Political Glossary</h1>
   </header>
+  <main>
+    <section>
+      <h2>Governmental Structures</h2>
+      <div class="term" onclick="openModal('democracy')">Democracy</div>
+      <div class="term" onclick="openModal('monarchy')">Monarchy</div>
+      <div class="term" onclick="openModal('totalitarianism')">Totalitarianism</div>
+      <div class="term" onclick="openModal('authoritarianism')">Authoritarianism</div>
+      <div class="term" onclick="openModal('theocracy')">Theocracy</div>
+      <div class="term" onclick="openModal('oligarchy')">Oligarchy</div>
+      <div class="term" onclick="openModal('military-junta')">Military Junta</div>
+      <div class="term" onclick="openModal('technocracy')">Technocracy</div>
+      <div class="term" onclick="openModal('plutocracy')">Plutocracy</div>
+      <div class="term" onclick="openModal('anarchy')">Anarchy</div>
+    </section>
+    <section>
+      <h2>Political Ideologies</h2>
+      <div class="term" onclick="openModal('socialism')">Socialism</div>
+      <div class="term" onclick="openModal('communism')">Communism</div>
+      <div class="term" onclick="openModal('capitalism')">Capitalism</div>
+      <div class="term" onclick="openModal('fascism')">Fascism</div>
+      <div class="term" onclick="openModal('nationalism')">Nationalism</div>
+    </section>
+  </main>
 
-  <div class="section">
-    <h2>Governmental Structures</h2>
-    <span class="term" onclick="openModal('democracy')">Democracy</span>
-    <span class="term" onclick="openModal('monarchy')">Monarchy</span>
-    <span class="term" onclick="openModal('totalitarianism')">Totalitarianism</span>
-    <span class="term" onclick="openModal('authoritarianism')">Authoritarianism</span>
-    <span class="term" onclick="openModal('theocracy')">Theocracy</span>
-    <span class="term" onclick="openModal('oligarchy')">Oligarchy</span>
-    <span class="term" onclick="openModal('military-junta')">Military Junta</span>
-    <span class="term" onclick="openModal('technocracy')">Technocracy</span>
-    <span class="term" onclick="openModal('plutocracy')">Plutocracy</span>
-    <span class="term" onclick="openModal('anarchy')">Anarchy</span>
+  <!-- Modals -->
+  <div id="democracy" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('democracy')">&times;</span>
+      <h3>Democracy</h3>
+      <p><em>“The will of the people shall be the basis of the authority of government.” - UDHR</em></p>
+      <p>Democracy is a system in which the right to govern resides indirectly or directly within the people. This form of government values individual freedoms, accountability, and peaceful transitions of power.</p>
+      <ul>
+        <li><strong>Free and Fair Elections:</strong> Elections with minimal coercion, as described by Robert Dahl.</li>
+        <li><strong>Rule of Law:</strong> Laws are public, enforced equally, adjudicated independently, and aligned with international human rights.</li>
+        <li><strong>Political Pluralism & Freedom of Expression:</strong> Multiple parties, open debate, and protected freedoms (speech, press, assembly, etc.).</li>
+        <li><strong>Organization:</strong> Citizens elect representatives and actively participate in the political process.</li>
+        <li><strong>Example:</strong> Ancient Athens</li>
+      </ul>
+    </div>
   </div>
-
-  <div class="section">
-    <h2>Political Ideologies</h2>
-    <span class="term" onclick="openModal('socialism')">Socialism</span>
-    <span class="term" onclick="openModal('communism')">Communism</span>
-    <span class="term" onclick="openModal('capitalism')">Capitalism</span>
-    <span class="term" onclick="openModal('fascism')">Fascism</span>
-    <span class="term" onclick="openModal('nationalism')">Nationalism</span>
+  <div id="socialism" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('socialism')">&times;</span>
+      <h3>Socialism</h3>
+      <p><strong>Founders:</strong> Karl Marx, Friedrich Engels, Eduard Bernstein</p>
+      <p><strong>Description:</strong> Socialism advocates for collective or government ownership of the means of production and distribution of goods. The goal is to reduce inequality and provide economic security through social ownership and public services.</p>
+      <ul>
+        <li>Wealth redistribution through taxation</li>
+        <li>Free access to healthcare, education, and housing</li>
+        <li>Worker cooperatives and collective ownership</li>
+        <li>Mixed economy in democratic socialism</li>
+      </ul>
+      <p><strong>Ideology in Action:</strong> Sweden (Social Democracy), Cuba, India (pre-1991 policies)</p>
+    </div>
   </div>
-
-  <!-- Modals will be appended here dynamically or manually -->
+  <div id="communism" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('communism')">&times;</span>
+      <h3>Communism</h3>
+      <p><strong>Founders:</strong> Karl Marx and Friedrich Engels</p>
+      <p><strong>Description:</strong> Communism is a classless, stateless society where all property is communally owned. It seeks to abolish capitalism and create total economic and social equality.</p>
+      <ul>
+        <li>Abolition of private property</li>
+        <li>Central planning of the economy</li>
+        <li>"From each according to his ability, to each according to his need"</li>
+        <li>Dictatorship of the proletariat (as a transitional phase)</li>
+      </ul>
+      <p><strong>Ideology in Action:</strong> Soviet Union, China (Maoist era), North Korea</p>
+    </div>
+  </div>
+  <div id="capitalism" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('capitalism')">&times;</span>
+      <h3>Capitalism</h3>
+      <p><strong>Founders:</strong> Adam Smith, Milton Friedman</p>
+      <p><strong>Description:</strong> Capitalism is an economic and political system in which private individuals or businesses own capital goods. Production and prices are determined by competition in a free market.</p>
+      <ul>
+        <li>Private property rights</li>
+        <li>Free markets and competition</li>
+        <li>Limited government intervention</li>
+        <li>Profit motive as an engine of growth</li>
+      </ul>
+      <p><strong>Ideology in Action:</strong> United States, United Kingdom, South Korea</p>
+    </div>
+  </div>
+  <div id="fascism" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('fascism')">&times;</span>
+      <h3>Fascism</h3>
+      <p><strong>Founders:</strong> Benito Mussolini, Giovanni Gentile</p>
+      <p><strong>Description:</strong> Fascism is an authoritarian and nationalist political ideology emphasizing the supremacy of the state over individual freedoms, a centralized autocratic government, and often, militarism and racism.</p>
+      <ul>
+        <li>Totalitarian leadership (often charismatic)</li>
+        <li>Anti-communism and anti-liberalism</li>
+        <li>National or racial purity</li>
+        <li>Cult of tradition and the state</li>
+      </ul>
+      <p><strong>Ideology in Action:</strong> Nazi Germany, Fascist Italy, Francoist Spain</p>
+    </div>
+  </div>
+  <div id="nationalism" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('nationalism')">&times;</span>
+      <h3>Nationalism</h3>
+      <p><strong>Founders:</strong> Various historical figures depending on context (Giuseppe Mazzini, Johann Gottlieb Fichte)</p>
+      <p><strong>Description:</strong> Nationalism emphasizes the interests, culture, and identity of a specific nation, often above those of others. It can unify or divide, depending on how it’s applied.</p>
+      <ul>
+        <li>Sovereignty and self-determination</li>
+        <li>Shared language, culture, or ancestry</li>
+        <li>National unity over globalism</li>
+        <li>Can be civic (inclusive) or ethnic (exclusive)</li>
+      </ul>
+      <p><strong>Ideology in Action:</strong> Indian independence movement, Zionism, Brexit movement</p>
+    </div>
+  </div>
 
   <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
     }
+
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
     }
   </script>
 </body>
 </html>
+
