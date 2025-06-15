@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politipedia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+    .term {
+      cursor: pointer;
+      color: #0066cc;
+      text-decoration: underline;
+      margin: 5px 0;
+      display: inline-block;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      border-radius: 8px;
+      position: relative;
+    }
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Glossary</h1>
+
+  <h2>Governmental Structures</h2>
+  <div>
+    <span class="term" onclick="openModal('democracy')">Democracy</span>
+    <span class="term" onclick="openModal('monarchy')">Monarchy</span>
+    <span class="term" onclick="openModal('totalitarianism')">Totalitarianism</span>
+    <span class="term" onclick="openModal('authoritarianism')">Authoritarianism</span>
+    <span class="term" onclick="openModal('theocracy')">Theocracy</span>
+    <span class="term" onclick="openModal('oligarchy')">Oligarchy</span>
+    <span class="term" onclick="openModal('military-junta')">Military Junta</span>
+    <span class="term" onclick="openModal('technocracy')">Technocracy</span>
+    <span class="term" onclick="openModal('plutocracy')">Plutocracy</span>
+    <span class="term" onclick="openModal('anarchy')">Anarchy</span>
+  </div>
+
+  <h2>Political Ideologies</h2>
+  <div>
+    <span class="term" onclick="openModal('socialism')">Socialism</span>
+    <span class="term" onclick="openModal('communism')">Communism</span>
+    <span class="term" onclick="openModal('capitalism')">Capitalism</span>
+    <span class="term" onclick="openModal('fascism')">Fascism</span>
+    <span class="term" onclick="openModal('nationalism')">Nationalism</span>
+  </div>
+
+  <!-- Modals -->
+  <div id="modals-container">
+    <!-- Modal templates will go here -->
+  </div>
+
+  <script>
+    const definitions = {
+      "democracy": `“The will of the people shall be the basis of the authority of government.” - UDHR<br><br>Democracy is a system in which the right to govern resides indirectly or directly within the people. This form of government values individual freedoms, accountability, and peaceful transitions of power.<br><br><strong>Attributes:</strong><br>• Free and Fair Elections<br>• Rule of Law<br>• Political Pluralism and Freedom of Expression<br>• Organization<br><br><strong>Examples in history:</strong> Ancient Athens`,
+      "monarchy": `"Justice is best secured by a supreme arbiter of disputes..."<br><br>A monarchy is ruled by a sovereign monarch who inherits power. It can be absolute or constitutional.<br><br><strong>Attributes:</strong><br>• Hereditary Succession<br>• Constitutional vs. Absolute Monarchy<br>• Source of National Unity<br><br><strong>Examples:</strong> France (843–1792), England (800–Present)`,
+      "totalitarianism": `Totalitarianism forbids opposition and controls all public/private life.<br><br><strong>Attributes:</strong><br>• Absolute Power<br>• Propaganda<br>• Single-Party Rule<br><br><strong>Examples:</strong> North Korea, Nazi Germany`,
+      "authoritarianism": `“Authority, when first detected, is a cancer.” – Timothy Leary<br><br>Authoritarianism features centralized power and suppressed freedoms.<br><br><strong>Examples:</strong> Franco's Spain, Belarus, North Korea`,
+      "theocracy": `Theocracy is rule by religious leaders or doctrine.<br><br><strong>Attributes:</strong><br>• Divine Authority<br>• Religious Law<br>• Clergy in Power`,
+      "oligarchy": `“Oligarchy... serves the interest of the wealthy few.” – Aristotle<br><br>Rule by a small elite class. <br><br><strong>Examples:</strong> Sparta, Modern Russia`,
+      "military-junta": `“Power flows from the barrel of a gun.” – Mao Zedong<br><br>Military controls the government, usually after a coup.<br><br><strong>Examples:</strong> Myanmar, Chile under Pinochet`,
+      "technocracy": `“Let the experts run the system.”<br><br>Experts govern based on technical knowledge. <br><br><strong>Examples:</strong> EU, Singapore`,
+      "plutocracy": `“Government of the rich, by the rich, for the rich.”<br><br>Wealthy elite dominate politics. <br><br><strong>Examples:</strong> Gilded Age U.S., modern critiques of U.S.`,
+      "anarchy": `“Anarchy is not chaos. It is order without rulers.” – Proudhon<br><br>Absence of central authority. Can be cooperative or chaotic.<br><br><strong>Examples:</strong> Somalia, Catalonia (1930s)`,
+      "socialism": `Advocates collective ownership to reduce inequality. <br><br><strong>Ideas:</strong><br>• Redistribution<br>• Public services<br>• Worker cooperatives<br><br><strong>Examples:</strong> Sweden, Cuba`,
+      "communism": `Classless, stateless society. Abolishes capitalism.<br><br><strong>Ideas:</strong><br>• No private property<br>• Central planning<br>• Proletariat rule<br><br><strong>Examples:</strong> USSR, Maoist China`,
+      "capitalism": `Private ownership and free markets. <br><br><strong>Ideas:</strong><br>• Property rights<br>• Free competition<br>• Profit motive<br><br><strong>Examples:</strong> US, UK, South Korea`,
+      "fascism": `Nationalist, authoritarian ideology. State over self.<br><br><strong>Ideas:</strong><br>• Totalitarian leader<br>• National purity<br><br><strong>Examples:</strong> Nazi Germany, Fascist Italy`,
+      "nationalism": `Focus on national identity and sovereignty. Can unify or divide.<br><br><strong>Ideas:</strong><br>• Self-determination<br>• National culture<br><br><strong>Examples:</strong> Indian Independence, Zionism`
+    };
+
+    const modalsContainer = document.getElementById('modals-container');
+
+    for (const [id, html] of Object.entries(definitions)) {
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.id = id;
+      modal.innerHTML = `
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('${id}')">&times;</span>
+          <div>${html}</div>
+        </div>
+      `;
+      modalsContainer.appendChild(modal);
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
